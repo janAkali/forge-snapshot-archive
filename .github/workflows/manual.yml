@@ -20,6 +20,8 @@ jobs:
       run: |
         git tag ${{ env.VERSION }}
         git push origin
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: download archive
       run:  wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2
     - name: release
