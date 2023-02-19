@@ -21,3 +21,5 @@ jobs:
       with:
         files: forge-gui-desktop-${{ env.VERSION }}.tar.bz2
         tag_name: ${{ env.VERSION }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
