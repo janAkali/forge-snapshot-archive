@@ -18,8 +18,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: 
-          echo "version=$( curl https://downloads.cardforge.org/dailysnapshots/version.txt ) >> $GITHUB_ENV
-          wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$version.tar.bz2
+          echo "VERSION=$( curl https://downloads.cardforge.org/dailysnapshots/version.txt ) >> $GITHUB_ENV
+          wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2
 
       - uses: EndBug/add-and-commit@v9
         with:
