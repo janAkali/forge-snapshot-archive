@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v3
       
     - name: Set env Version
-      run:  echo "VERSION=$(curl https://downloads.cardforge.org/dailysnapshots/version.txt)" >> $GITHUB_ENV
+      run:  echo "VERSION=test-test" >> $GITHUB_ENV
     - name: set new tag
       run: |
         git tag ${{ env.VERSION }}
