@@ -19,8 +19,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: 
-          version=$(curl "https://downloads.cardforge.org/dailysnapshots/version.txt")
-          wget "https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-${version}.tar.bz2"
+          VERSION=$(curl "https://downloads.cardforge.org/dailysnapshots/version.txt")
+          wget "https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-${VERSION}.tar.bz2"
 
       - name: Commit files  # transfer the new files back into the repository
         run:
