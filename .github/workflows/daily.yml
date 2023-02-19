@@ -22,6 +22,9 @@ jobs:
       run:  echo "VERSION=$(curl https://downloads.cardforge.org/dailysnapshots/version.txt)" >> $GITHUB_ENV
     - name: set new tag
       run: |
+        echo "${{ env.VERSION }}" > version.txt
+        git add version.txt
+        git commit -m 'update version.txt'
         git tag test-new
         git push origin
       env:
