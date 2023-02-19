@@ -1,0 +1,47 @@
+name: Download and release latest snapshot
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+    
+  workflow_dispatch:
+  
+permissions: 
+  contents: write
+
+jobs:
+  build:
+    name: release snapshot
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Set env version
+      run:  echo "VERSION=$(curl https://downloads.cardforge.org/dailysnapshots/version.txt)" >> $GITHUB_ENV
+      
+    - name: Git new tag
+      run: |
+        git tag ${{ env.VERSION }}
+        git push origin
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: download archive
+      run: |
+        wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2
+      
+    - name: Publish release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          forge-gui-desktop-${{ env.VERSION }}.tar.bz2
+        tag_name: ${{ env.VERSION }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - uses: dev-drprasad/delete-older-releases@v0.2.1
+      with:
+        keep_latest: 50
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
