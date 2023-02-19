@@ -16,7 +16,9 @@ jobs:
     - name: set env
       run:  echo "VERSION=$(curl https://downloads.cardforge.org/dailysnapshots/version.txt)" >> $GITHUB_ENV
     - name: set new tag
-      run:  git tag ${{ env.VERSION }}
+      run: |
+        git tag ${{ env.VERSION }}
+        git push origin
     - name: download archive
       run:  wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2
     - name: release
