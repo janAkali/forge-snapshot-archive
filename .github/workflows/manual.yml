@@ -10,15 +10,15 @@ jobs:
     name: upload snapshot
     runs-on: ubuntu-latest
     steps:
-    
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: set env
       run:  echo "VERSION=$(curl https://downloads.cardforge.org/dailysnapshots/version.txt)" >> $GITHUB_ENV
     - name: download archive
       run:  wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2
-    - name: Release with Notes
-      uses: elgohr/Github-Release-Action@v4
+    - name: release
+      uses: softprops/action-gh-release@v1
       with:
-        title: MyReleaseMessage
         files: forge-forge-gui-desktop-$VERSION.tar.bz2
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
