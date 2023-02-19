@@ -18,12 +18,14 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: wget forge-gui-desktop-$(curl "https://downloads.cardforge.org/dailysnapshots/version.txt").tar.bz2
+        run: 
+          url="https://downloads.cardforge.org/dailysnapshots"
+          wget $url/forge-gui-desktop-$(curl "$url/version.txt").tar.bz2
 
       - name: Commit files  # transfer the new files back into the repository
         run:
           git config --local user.name  ${{ github.actor }}
-          git add forge-*
+          git add forge-gui-*.tar.bz2
           git commit -m "Add new snapshot."
       - name: Push changes  # push the output folder to your repo
         uses: ad-m/github-push-action@master
