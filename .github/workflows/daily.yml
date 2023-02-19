@@ -23,8 +23,6 @@ jobs:
     - name: set new tag
       run: |
         echo "${{ env.VERSION }}" > version.txt
-        git add version.txt
-        git commit -m 'update version.txt'
         git tag test-new
         git push origin
       env:
@@ -41,6 +39,6 @@ jobs:
         files: |
           forge-gui-desktop-${{ env.VERSION }}.tar.bz2
           forge-android-${{ env.VERSION }}-signed-aligned.apk
-        tag_name: ${{ env.VERSION }}
+        tag_name: test-new
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
