@@ -28,12 +28,16 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
     - name: download archive
-      run:  wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2
+      run: |
+        wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2
+        wget https://downloads.cardforge.org/dailysnapshots/forge-android-$VERSION-signed-aligned.apk
       
     - name: release
       uses: softprops/action-gh-release@v1
       with:
-        files: forge-gui-desktop-${{ env.VERSION }}.tar.bz2
+        files: |
+          forge-gui-desktop-${{ env.VERSION }}.tar.bz2
+          forge-android-${{ env.VERSION }}-signed-aligned.apk
         tag_name: ${{ env.VERSION }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
