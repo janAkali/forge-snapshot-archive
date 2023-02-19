@@ -19,5 +19,5 @@ jobs:
     - name: release
       uses: softprops/action-gh-release@v1
       with:
-        files: forge-forge-gui-desktop-${{ env.VERSION }}.tar.bz2
+        files: forge-gui-desktop-${{ env.VERSION }}.tar.bz2
         tag_name: ${{ env.VERSION }}
