@@ -10,7 +10,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    env: VERSION
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -19,8 +19,8 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: 
-          VERSION=$(curl "https://downloads.cardforge.org/dailysnapshots/version.txt")
-          wget "https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2"
+          echo "version=$(curl \"https://downloads.cardforge.org/dailysnapshots/version.txt\")" >> $GITHUB_ENV
+          wget "https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$version.tar.bz2"
 
       - name: Commit files  # transfer the new files back into the repository
         run:
