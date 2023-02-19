@@ -14,13 +14,11 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: |
-          echo "VERSION=$( curl https://downloads.cardforge.org/dailysnapshots/version.txt )" >> $GITHUB_ENV
-          wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2
-
+      - name: set env
+        run:  echo "VERSION=$(curl https://downloads.cardforge.org/dailysnapshots/version.txt)" >> $GITHUB_ENV
+      - name: download archive
+        run:  wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2
       - uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
