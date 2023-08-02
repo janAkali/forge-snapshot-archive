@@ -1,7 +1,6 @@
+# The unofficial archive of 50 latest snapshots of Forge (rules engine / card game)
 
-# forge-snapshot-archive
 
+Forge snapshots: https://downloads.cardforge.org/dailysnapshots/)
 
-Archive of forge snapshots (https://downloads.cardforge.org/dailysnapshots/)
-
-Main repository: https://github.com/Card-Forge/forge/
+Forge repository: https://github.com/Card-Forge/forge/
