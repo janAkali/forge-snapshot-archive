@@ -22,21 +22,21 @@ jobs:
 
     - name: Git new tag
       run: |
-        git tag ${{ env.VERSION }}
+        git tag $VERSION
         git push origin
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: download archive
       run: |
-        wget https://downloads.cardforge.org/dailysnapshots/forge-gui-desktop-$VERSION.tar.bz2
+        wget https://downloads.cardforge.org/dailysnapshots/forge-installer-$VERSION.jar
 
     - name: Publish release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          forge-gui-desktop-${{ env.VERSION }}.tar.bz2
-        tag_name: ${{ env.VERSION }}
+          forge-installer-$VERSION.jar
+        tag_name: $VERSION
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
