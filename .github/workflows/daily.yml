@@ -17,26 +17,26 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Set env version
+    - name: Set env VERSION
       run:  echo "VERSION=$(curl https://downloads.cardforge.org/dailysnapshots/version.txt)" >> $GITHUB_ENV
 
     - name: Git new tag
       run: |
-        git tag $VERSION
+        git tag ${{ env.VERSION }}
         git push origin
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: download archive
       run: |
-        wget https://downloads.cardforge.org/dailysnapshots/forge-installer-$VERSION.jar
+        wget https://downloads.cardforge.org/dailysnapshots/forge-installer-${{ env.VERSION }}.jar
 
     - name: Publish release
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          forge-installer-$VERSION.jar
-        tag_name: $VERSION
+          forge-installer-${{ env.VERSION }}.jar
+        tag_name: ${{ env.VERSION }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
